@@ -1,0 +1,52 @@
+---
+title: "Analysis of phosphorylation sequences affected by Cyclin B depeletion"
+author: "Brandon Coke"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+#PUT THE FOLDER INTO WORKING DIRECTORY. USE getwd() to find it out
+if("VennDiagram" %in% rownames(installed.packages()) == FALSE){
+  install.packages("VennDiagram")}
+library(VennDiagram)
+if("ggplot2" %in% rownames(installed.packages()) == FALSE){
+  install.packages("ggplot2")}
+library(ggplot2)
+if("plotly" %in% rownames(installed.packages()) == FALSE){
+  install.packages("plotly")}
+library(plotly)
+if("flexdashboard" %in% rownames(installed.packages()) == FALSE){
+  install.packages("flexdashboard")}
+library(flexdashboard)
+if("knitr" %in% rownames(installed.packages()) == FALSE){
+  install.packages("knitr")}
+library(knitr)
+piechart_data= read.csv("~\\BC's_seq_analysis\\Data for venn.csv")
+brandontheme=theme(plot.title = element_text(color="black", size=18,
+                                               face="bold",hjust = 0.5),
+                     axis.text = element_text(color="black", size=15, 
+                                              face="bold",hjust = 0.5),
+                     axis.title = element_text(color="black", size=15, face="bold",
+                                               hjust = 0.5))
+
+piechart_data= read.csv("~\\BC's_seq_analysis\\Data for venn.csv")
+phosphosite_data= read.csv("~\\BC's_seq_analysis\\Phospho site data.csv")
+```
+
+Page 1
+=======================================================================
+### Information.
+As seen in figures 1 and 2, there is a clear bais towards the minimum CDK consensus sequence (S/T-P) with some preference to the full CDK consensus sequence (S/T-P-X-R/K-R/K-R/K). Upstream of the phosphorlation sites there increased frequency of lysine residues similar to Auroa B consensus sequence (K-X-S-I/L/V) and CDK1 minimum non-cosensus sequence (S/T-X-X-R/K) but not the full non-canonical consensus sequence P-X-S/T-X-R/K-R/K). Additionally, glutamate residues were also enriched downstream similar to the Plk minimum consensus sequence (D/E-X-S/T). However, hydrophobic residues upstream of the phospohorylated serine/theronine were uncommon in the sequences. The lysine residues down stream could also be a result a tendancy of having of cyclin binidng motifs such as the Cy motif (R/K-X-L), although the luecine residues tended to not to be enriched in the sequences.
+
+Here is some basic data analysis of the titanic dataset. A normal distribution of the ages (figure 1). A histogram of the fares (figure 2). A pie chart of where the passenagers embarked (figure 3). . Figure 4 .
+
+Row
+-----------------------------------------------------------------------
+
+```{r pressure, echo=FALSE, fig.cap="Figure 1- Heat map of amino acids adjacent to phosphorylation site.", out.width = '100%'}
+knitr::include_graphics("~//BC's_seq_analysis//Heatmap.png")
+```
